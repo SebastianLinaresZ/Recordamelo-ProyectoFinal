@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1764090334 source:c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\main.cpp
+	<iostream>
+	"myString.h"
+	"User.h"
+	"Tarea.h"
+
+1764090515 c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\include\mystring.h
+	<iostream>
+
+1764090334 c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\include\user.h
+	"myString.h"
+	"Tarea.h"
+
+1764091270 c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\include\tarea.h
+	"myString.h"
+	<fstream>
+	<ctime>
+
+1764090515 source:c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\src\mystring.cpp
+	"myString.h"
+
+1764090334 source:c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\src\tarea.cpp
+	"Tarea.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1764090867 source:c:\users\halco\onedrive\desktop\ucsp documents\ccomp\ccomp2-2\ciencia-de-la-computacion_ccomp2-2\recordamelopepepep\src\user.cpp
+	"User.h"
+	"myString.h"
+	<cstring>
+	<iostream>
+	<fstream>
+	<ctime>
+

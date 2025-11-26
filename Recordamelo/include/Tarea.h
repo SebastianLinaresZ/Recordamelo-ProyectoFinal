@@ -80,6 +80,6 @@ public:
     void mostrarDetalles() const override;
 };
 
-Tarea* crearTareaPolimorfica();
+Tarea* crearTarea();
 
 #endif

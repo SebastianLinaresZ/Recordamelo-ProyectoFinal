@@ -11,12 +11,12 @@ private:
     char* data;
 
 public:
-    // Constructores
+
     MyString();
     MyString(const char* str);
 
     // Regla de 3
-    MyString(const MyString& other); //clona
+    MyString(const MyString& other); //culona
     MyString& operator=(const MyString& other); //asigna
     MyString& operator=(const char* str); //asinga el caracter
     ~MyString(); //destruye

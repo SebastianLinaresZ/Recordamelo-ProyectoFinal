@@ -1,6 +1,5 @@
 #include "User.h"
 #include "myString.h"
-#include <cstring>
 #include <iostream>
 #include <fstream>
 #include <ctime>
@@ -64,7 +63,9 @@ User* User::cargarUsuariosSistema(int& total) {
     return lista;
 }
 
-const char* User::getNombre() const { return nombre.c_str(); }
+const char* User::getNombre() const {
+    return nombre.c_str();
+}
 
 void User::redimensionar() {
     int nuevaCapacidad = (capacidad == 0) ? 2 : capacidad * 2;
@@ -160,7 +161,8 @@ void User::eliminarTarea(int indiceUsuario) {
         numTareas--;
         guardarTareas();
         cout << "Tarea eliminada." << endl;
-    } else cout << "Indice no valido." << endl;
+    } else
+        cout << "Indice no valido." << endl;
 }
 
 void User::guardarTareas() const {
@@ -194,24 +196,21 @@ void User::cargarTareas() {
         ifs.getline(buffer, 300, '|'); miStrCopiar(tipoStr, buffer);
         ifs.getline(buffer, 300, '|'); int prio = atoi(buffer);
 
-        string tempDone;
-        char c;
-        while(ifs.get(c)) {
-            if(c == '|' || c == '\n') break;
-            tempDone += c;
-        }
-        bool done = (tempDone == "1");
+
 
         Tarea* nueva = nullptr;
         if (strcmp(tipoStr, "Universidad") == 0) {
             nueva = new TareaUniversidad(tit.c_str(), desc.c_str(), fecha, prio, "");
         } else if (strcmp(tipoStr, "Hogar") == 0) {
             nueva = new TareaHogar(tit.c_str(), desc.c_str(), fecha, prio, "");
-        } else {
+        } else if (strcmp(tipoStr, "Ocio") == 0) {
             nueva = new TareaOcio(tit.c_str(), desc.c_str(), fecha, prio, "");
         }
+         else {
+            cout << "NUNCA DEBIO PASAR!" << endl;
+        }
 
-        nueva->setCompletada(done);
+        nueva->setCompletada(hecho);
 
         if (c == '|') nueva->cargarExtra(ifs);
 

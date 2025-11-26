@@ -15,16 +15,38 @@ Tarea::Tarea(const char* tit, const char* desc, time_t fecha, const char* tip, i
     tipo = tip; prioridad = prio; completada = false;
 }
 
-//Getters (Cruciales para evitar errores de acceso protected)
-const char* Tarea::getTitulo() const { return titulo.c_str(); }
-const char* Tarea::getDescripcion() const { return descripcion.c_str(); }
-const char* Tarea::getTipo() const { return tipo.c_str(); }
-time_t Tarea::getFechaLimite() const { return fechaLimite; }
-int Tarea::getPrioridad() const { return prioridad; }
-bool Tarea::isCompletada() const { return completada; }
-void Tarea::setCompletada(bool estado) { completada = estado; }
+//gets
+const char* Tarea::getTitulo() const {
+    return titulo.c_str();
+    }
 
-Tarea* Tarea::clone() const { return new Tarea(*this); }
+const char* Tarea::getDescripcion() const {
+    return descripcion.c_str();
+    }
+
+const char* Tarea::getTipo() const {
+    return tipo.c_str();
+    }
+
+time_t Tarea::getFechaLimite() const {
+    return fechaLimite;
+    }
+
+int Tarea::getPrioridad() const {
+    return prioridad;
+    }
+
+bool Tarea::isCompletada() const {
+    return completada;
+}
+
+void Tarea::setCompletada(bool estado) {
+    completada = estado;
+}
+
+Tarea* Tarea::clone() const {
+    return new Tarea(*this);
+    }
 
 void Tarea::guardar(std::ofstream& ofs) const {
     ofs << titulo.c_str() << "|"
@@ -36,6 +58,7 @@ void Tarea::guardar(std::ofstream& ofs) const {
 }
 
 void Tarea::cargarExtra(std::ifstream& ifs) {}
+
 void Tarea::mostrarDetalles() const {}
 
 const char* Tarea::obtenerPrioridadTexto() const {
@@ -48,6 +71,7 @@ void Tarea::obtenerFechaFormateada(char* buffer) const {
     struct tm* infoTiempo = localtime(&fechaLimite);
     sprintf(buffer, "%02d/%02d/%04d", infoTiempo->tm_mday, infoTiempo->tm_mon + 1, infoTiempo->tm_year + 1900);
 }
+
 
 //hogar
 TareaHogar::TareaHogar() : Tarea() { habitacion = "Casa"; }
@@ -72,8 +96,9 @@ void TareaHogar::cargarExtra(std::ifstream& ifs) {
 }
 
 void TareaHogar::mostrarDetalles() const {
-    cout << "      [HOGAR] Habitacion: " << habitacion.c_str() << endl;
+    cout << "[Hogar] Habitacion: " << habitacion.c_str() << endl;
 }
+
 
 //universidad
 TareaUniversidad::TareaUniversidad() : Tarea() { materia = "General"; }
@@ -93,12 +118,14 @@ void TareaUniversidad::guardar(std::ofstream& ofs) const {
 void TareaUniversidad::cargarExtra(std::ifstream& ifs) {
     char buffer[100];
     ifs.getline(buffer, 100, '\n');
-    if (buffer[0] == '|') materia = buffer + 1;
-    else materia = buffer;
+    if (buffer[0] == '|')
+        materia = buffer + 1;
+    else
+        materia = buffer;
 }
 
 void TareaUniversidad::mostrarDetalles() const {
-    cout << "      [UNI] Materia: " << materia.c_str() << endl;
+    cout << "  [Universidad] Materia: " << materia.c_str() << endl;
 }
 
 //Ocio
@@ -124,7 +151,7 @@ void TareaOcio::cargarExtra(std::ifstream& ifs) {
 }
 
 void TareaOcio::mostrarDetalles() const {
-    cout << "      [OCIO] Lugar: " << lugar.c_str() << endl;
+    cout << "  [Ocio] Lugar: " << lugar.c_str() << endl;
 }
 
 

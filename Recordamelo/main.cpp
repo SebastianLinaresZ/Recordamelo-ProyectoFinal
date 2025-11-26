@@ -35,8 +35,7 @@ int main() {
             }
 
             if (opcion == 1) {
-                // Usamos la funcion que devuelve un puntero a la subclase correcta
-                Tarea* t = crearTareaPolimorfica();
+                Tarea* t = crearTarea();
                 usuarioActual->agregarTareaUsuario(t);
             }
             else if (opcion == 2) {

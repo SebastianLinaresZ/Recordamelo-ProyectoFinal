@@ -5,6 +5,7 @@
 int miStrLen(const char* str);
 void miStrCopiar(char* dest, const char* src);
 void miStrConcatenar(char* dest, const char* src);
+bool sonIguales(const char* a, const char* b);
 
 class MyString {
 private:

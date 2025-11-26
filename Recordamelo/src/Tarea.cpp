@@ -155,7 +155,7 @@ void TareaOcio::mostrarDetalles() const {
 }
 
 
-Tarea* crearTareaPolimorfica() {
+Tarea* crearTarea() {
     char tit[100], desc[200], extra[100];
     int dia, mes, prio, opcionTipo;
 

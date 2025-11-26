@@ -193,26 +193,38 @@ void User::cargarTareas() {
         ifs.getline(buffer, 300, '|'); MyString tit = buffer;
         ifs.getline(buffer, 300, '|'); MyString desc = buffer;
         ifs.getline(buffer, 300, '|'); time_t fecha = (time_t)atol(buffer);
-        ifs.getline(buffer, 300, '|'); miStrCopiar(tipoStr, buffer);
+        ifs.getline(buffer, 300, '|');
+        miStrCopiar(tipoStr, buffer);
         ifs.getline(buffer, 300, '|'); int prio = atoi(buffer);
 
+        char c;
+        char ultimoValido = '0';
+        char separadorEncontrado = '\n';
 
+        while(ifs.get(c)) {
+            if(c == '|' || c == '\n') {
+                separadorEncontrado = c;
+                break;
+            }
+            ultimoValido = c;
+        }
+        bool hecho = (ultimoValido == '1');
 
         Tarea* nueva = nullptr;
-        if (strcmp(tipoStr, "Universidad") == 0) {
+
+        if (sonIguales(tipoStr, "Universidad")) {
             nueva = new TareaUniversidad(tit.c_str(), desc.c_str(), fecha, prio, "");
-        } else if (strcmp(tipoStr, "Hogar") == 0) {
+        } else if (sonIguales(tipoStr, "Hogar")) {
             nueva = new TareaHogar(tit.c_str(), desc.c_str(), fecha, prio, "");
-        } else if (strcmp(tipoStr, "Ocio") == 0) {
+        } else {
             nueva = new TareaOcio(tit.c_str(), desc.c_str(), fecha, prio, "");
-        }
-         else {
-            cout << "NUNCA DEBIO PASAR!" << endl;
         }
 
         nueva->setCompletada(hecho);
 
-        if (c == '|') nueva->cargarExtra(ifs);
+        if (separadorEncontrado == '|') {
+            nueva->cargarExtra(ifs);
+        }
 
         listaTareas[i] = nueva;
     }

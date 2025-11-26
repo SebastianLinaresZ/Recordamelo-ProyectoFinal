@@ -69,3 +69,37 @@
 	<fstream>
 	<ctime>
 
+1764191932 source:d:\recordamelo-proyectofinal\recordamelo\main.cpp
+	<iostream>
+	"myString.h"
+	"User.h"
+	"Tarea.h"
+
+1764192860 d:\recordamelo-proyectofinal\recordamelo\include\mystring.h
+	<iostream>
+
+1764191932 d:\recordamelo-proyectofinal\recordamelo\include\user.h
+	"myString.h"
+	"Tarea.h"
+
+1764191932 d:\recordamelo-proyectofinal\recordamelo\include\tarea.h
+	"myString.h"
+	<fstream>
+	<ctime>
+
+1764191932 source:d:\recordamelo-proyectofinal\recordamelo\src\tarea.cpp
+	"Tarea.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1764192860 source:d:\recordamelo-proyectofinal\recordamelo\src\mystring.cpp
+	"myString.h"
+
+1764192860 source:d:\recordamelo-proyectofinal\recordamelo\src\user.cpp
+	"User.h"
+	"myString.h"
+	<iostream>
+	<fstream>
+	<ctime>
+

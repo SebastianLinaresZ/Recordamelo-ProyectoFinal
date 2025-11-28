@@ -33,8 +33,11 @@ public:
     void eliminarTarea(int indiceUsuario);
 
     static User* cargarUsuariosSistema(int& total);
+    //nuevo metodo
+    void modificarTarea(int indiceUsuario);
 };
 
 int seleccionarUsuario(User usuarios[], int total);
+
 
 #endif

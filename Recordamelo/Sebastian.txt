@@ -1,2 +1,2 @@
 1
-Entregar Proyecto|Tenemos que presentar el proyecto y explicar el codigo (Entiende el codigo y como se implementa)|1764306000|Universidad|3|0|Ccomp
+Exponer proyecto|Tenemos que presentar el proyecto y explicar el codigo (Entiende el codigo y como se implementa)|1764306000|Universidad|3|0|Lugar

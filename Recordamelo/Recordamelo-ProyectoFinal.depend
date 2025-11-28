@@ -103,3 +103,73 @@
 	<fstream>
 	<ctime>
 
+1764287007 source:c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\main.cpp
+	<iostream>
+	"myString.h"
+	"User.h"
+	"Tarea.h"
+
+1764182170 c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\include\mystring.h
+	<iostream>
+
+1764287821 c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\include\user.h
+	"myString.h"
+	"Tarea.h"
+
+1764287821 c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\include\tarea.h
+	"myString.h"
+	<fstream>
+	<ctime>
+
+1764182170 source:c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\src\mystring.cpp
+	"myString.h"
+
+1764182170 source:c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\src\tarea.cpp
+	"Tarea.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1764287627 source:c:\users\usuario\downloads\recordamelo-proyectofinal-main\recordamelo\src\user.cpp
+	"User.h"
+	"myString.h"
+	"Tarea.h"
+	<iostream>
+	<fstream>
+	<ctime>
+
+1764287007 source:c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\main.cpp
+	<iostream>
+	"myString.h"
+	"User.h"
+	"Tarea.h"
+
+1764182170 c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\include\mystring.h
+	<iostream>
+
+1764287821 c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\include\user.h
+	"myString.h"
+	"Tarea.h"
+
+1764287821 c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\include\tarea.h
+	"myString.h"
+	<fstream>
+	<ctime>
+
+1764182170 source:c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\src\mystring.cpp
+	"myString.h"
+
+1764182170 source:c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\src\tarea.cpp
+	"Tarea.h"
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1764287984 source:c:\users\halco\downloads\recordamelo-proyectofinal-main\recordamelo\src\user.cpp
+	"User.h"
+	"myString.h"
+	"Tarea.h"
+	<iostream>
+	<fstream>
+	<ctime>
+

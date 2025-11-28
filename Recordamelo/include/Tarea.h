@@ -35,6 +35,12 @@ public:
 
     const char* obtenerPrioridadTexto() const;
     void obtenerFechaFormateada(char* buffer) const;
+
+    void setTitulo(const MyString& t) { titulo = t; }
+    void setDescripcion(const MyString& d) { descripcion = d; }  // porque los atributos son protected
+    void setFechaLimite(time_t f) { fechaLimite = f; }
+    void setPrioridad(int p) { prioridad = p; }
+
 };
 
 //hijas
@@ -50,6 +56,10 @@ public:
     void guardar(std::ofstream& ofs) const override;
     void cargarExtra(std::ifstream& ifs) override;
     void mostrarDetalles() const override;
+
+    MyString getHabitacion() const { return habitacion; }
+    void setHabitacion(const MyString& h) { habitacion = h; } //porq es privado
+
 };
 
 class TareaUniversidad : public Tarea {
@@ -64,6 +74,10 @@ public:
     void guardar(std::ofstream& ofs) const override;
     void cargarExtra(std::ifstream& ifs) override;
     void mostrarDetalles() const override;
+
+    MyString getMateria() const { return materia; }
+    void setMateria(const MyString& m) { materia = m; } //porq es privado
+
 };
 
 class TareaOcio : public Tarea {
@@ -78,6 +92,10 @@ public:
     void guardar(std::ofstream& ofs) const override;
     void cargarExtra(std::ifstream& ifs) override;
     void mostrarDetalles() const override;
+
+    MyString getlugar() const { return lugar; }
+    void setLugar(const MyString& l) { lugar = l; } //porq es privado
+
 };
 
 Tarea* crearTarea();

@@ -1,5 +1,6 @@
 #include "User.h"
 #include "myString.h"
+#include "Tarea.h"
 #include <iostream>
 #include <fstream>
 #include <ctime>
@@ -8,12 +9,16 @@ using namespace std;
 
 // Constructores
 User::User() {
-    nombre = "Invitado"; numTareas = 0; capacidad = 2;
+    nombre = "Invitado";
+    numTareas = 0;
+    capacidad = 2;
     listaTareas = new Tarea*[capacidad];
 }
 
 User::User(const char* nom) {
-    nombre = nom; numTareas = 0; capacidad = 2;
+    nombre = nom;
+    numTareas = 0;
+    capacidad = 2;
     listaTareas = new Tarea*[capacidad];
 
     char buffer[100];
@@ -25,8 +30,10 @@ User::User(const char* nom) {
 }
 
 User::User(const User& other) {
-    nombre = other.nombre; archivoTareas = other.archivoTareas;
-    numTareas = other.numTareas; capacidad = other.capacidad;
+    nombre = other.nombre;
+    archivoTareas = other.archivoTareas;
+    numTareas = other.numTareas;
+    capacidad = other.capacidad;
     listaTareas = new Tarea*[capacidad];
     for(int i = 0; i < numTareas; i++) {
         listaTareas[i] = other.listaTareas[i]->clone();
@@ -230,4 +237,109 @@ void User::cargarTareas() {
     }
     numTareas = total;
     ifs.close();
+
+}
+
+
+void User::modificarTarea(int indiceUsuario) {
+    int ind = indiceUsuario - 1;
+    if (ind < 0 || ind >= numTareas) {
+        cout << "Indice no valido." << endl;
+        return;
+    }
+
+    Tarea* t = listaTareas[ind];
+
+    cout << "\n--- MODIFICANDO TAREA " << indiceUsuario << " ---" << endl;
+
+    while (true) {
+        cout << "\nQue deseas modificar?" << endl;
+        cout << "1. Titulo" << endl;
+        cout << "2. Descripcion" << endl;
+        cout << "3. Fecha limite" << endl;
+        cout << "4. Prioridad" << endl;
+        cout << "5. Materia/Habitacion/Lugar" << endl;
+        cout << "6. Salir" << endl;
+        cout << "Elige: ";
+
+        int op;
+        cin >> op;
+        cin.ignore(1000, '\n');
+
+        if (op == 1) {
+            char nuevo[100];
+            cout << "Nuevo titulo: ";
+            cin.getline(nuevo, 100);
+            t->setTitulo(nuevo);
+            cout << "Titulo modificado correctamente.\n";
+            guardarTareas();
+            continue;
+        }
+        else if (op == 2) {
+            char nuevo[200];
+            cout << "Nueva descripcion: ";
+            cin.getline(nuevo, 200);
+            t->setDescripcion(nuevo);
+            cout << "Descripcion modificada correctamente.\n";
+            guardarTareas();
+            continue;
+        }
+        else if (op == 3) {
+            int d, m;
+            cout << "Nueva fecha (dia mes): ";
+            cin >> d >> m;
+            cin.ignore(1000, '\n');
+
+            time_t ahora = time(0);
+            struct tm* now = localtime(&ahora);
+
+            struct tm fecha = {0};
+            fecha.tm_year = now->tm_year;
+            fecha.tm_mon = m - 1;
+            fecha.tm_mday = d;
+
+            t->setFechaLimite(mktime(&fecha));
+            cout << "Fecha limite modificada correctamente.\n";
+            guardarTareas();
+            continue;
+        }
+        else if (op == 4) {
+            int p;
+            cout << "Nueva prioridad (1-3): ";
+            cin >> p;
+            cin.ignore(1000, '\n');
+            t->setPrioridad(p);
+            cout << "Prioridad modificada correctamente.\n";
+            guardarTareas();
+            continue;
+        }
+        else if (op == 5) {
+            char extra[100];
+            cout << "Nueva Materia/Habitacion/Lugar: ";
+            cin.getline(extra, 100);
+
+            if (sonIguales(t->getTipo(), "Universidad")) {
+                ((TareaUniversidad*)t)->setMateria(extra);
+                cout << "Materia modificada correctamente.\n";
+            }
+            else if (sonIguales(t->getTipo(), "Hogar")) {
+                ((TareaHogar*)t)->setHabitacion(extra);
+                cout << "Habitacion modificada correctamente.\n";
+            }
+            else if (sonIguales(t->getTipo(), "Ocio")) {
+                ((TareaOcio*)t)->setLugar(extra);
+                cout << "Lugar modificado correctamente.\n";
+            }
+
+            guardarTareas();
+            continue;
+        }
+        else if (op == 6) {
+            cout << "Saliendo de la seccion..." << endl;
+            break;
+        }
+        else {
+            cout << "Opcion invalida." << endl;
+        }
+    }
 }

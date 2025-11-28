@@ -24,8 +24,9 @@ int main() {
             cout << "2. Ver Mis Tareas" << endl;
             cout << "3. Completar Tarea" << endl;
             cout << "4. Eliminar Tarea" << endl;
-            cout << "5. Cambiar de usuario" << endl;
-            cout << "6. Salir" << endl;
+            cout << "5. Modificar Tarea" << endl;
+            cout << "6. Cambiar de usuario" << endl;
+            cout << "7. Salir" << endl;
             cout << "Elige una opcion: ";
 
             int opcion;
@@ -54,9 +55,16 @@ int main() {
                 usuarioActual->eliminarTarea(num);
             }
             else if (opcion == 5) {
-                corriendo = false;
+                usuarioActual->mostrarMisTareas();
+                cout << "Numero de la tarea a modificar: ";
+                int num;
+                cin >> num;
+                usuarioActual->modificarTarea(num);
             }
             else if (opcion == 6) {
+                corriendo = false;
+            }
+            else if (opcion == 7) {
                 cout << "Saliendo..." << endl;
                 delete[] usuarios;
                 return 0;

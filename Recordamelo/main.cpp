@@ -25,8 +25,9 @@ int main() {
             cout << "3. Completar Tarea" << endl;
             cout << "4. Eliminar Tarea" << endl;
             cout << "5. Modificar Tarea" << endl;
-            cout << "6. Cambiar de usuario" << endl;
-            cout << "7. Salir" << endl;
+            cout << "6. Administrar Subtareas" << endl;
+            cout << "7. Cambiar de usuario" << endl;
+            cout << "8. Salir" << endl;
             cout << "Elige una opcion: ";
 
             int opcion;
@@ -62,9 +63,23 @@ int main() {
                 usuarioActual->modificarTarea(num);
             }
             else if (opcion == 6) {
-                corriendo = false;
+                usuarioActual->mostrarMisTareas();
+                if (totalUsuarios > 0) {
+                    cout << "Elige el numero de la tarea : ";
+                    int num = 0;
+                    cin >> num;
+                    cin.ignore(1000, '\n');
+
+                    cout << "Descripcion de la subtarea: ";
+                    char subDesc[100];
+                    cin.getline(subDesc, 100);
+                    usuarioActual->agregarSubtareaATarea(num, subDesc);
+                }
             }
             else if (opcion == 7) {
+                corriendo = false;
+            }
+            else if (opcion == 8) {
                 cout << "Saliendo..." << endl;
                 delete[] usuarios;
                 return 0;

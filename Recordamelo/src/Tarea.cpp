@@ -6,14 +6,61 @@
 using namespace std;
 
 Tarea::Tarea() {
-    titulo = " "; descripcion = " "; fechaLimite = time(0);
+    titulo = ""; descripcion = ""; fechaLimite = time(0);
     tipo = "Generica"; prioridad = 3; completada = false;
+
+    numSubtareas = 0; capSubtareas = 2; subDescripciones = new MyString[capSubtareas];
+    subEstados = new bool[capSubtareas];
 }
 
 Tarea::Tarea(const char* tit, const char* desc, time_t fecha, const char* tip, int prio) {
     titulo = tit; descripcion = desc; fechaLimite = fecha;
     tipo = tip; prioridad = prio; completada = false;
+
+    numSubtareas = 0; capSubtareas = 2; subDescripciones = new MyString[capSubtareas];
+    subEstados = new bool[capSubtareas];
 }
+
+Tarea::~Tarea() {
+    delete[] subDescripciones;
+    delete[] subEstados;
+}
+
+void Tarea::redimensionarSubtareas() {
+    int nuevaCap = capSubtareas * 2;
+    MyString* nuevasDesc = new MyString[nuevaCap];
+    bool* nuevosEstados = new bool[nuevaCap];
+
+    for (int i = 0; i < numSubtareas; i++) {
+        nuevasDesc[i] = subDescripciones[i];
+        nuevosEstados[i] = subEstados[i];
+    }
+
+    delete[] subDescripciones;
+    delete[] subEstados;
+
+    subDescripciones = nuevasDesc;
+    subEstados = nuevosEstados;
+    capSubtareas = nuevaCap;
+}
+
+void Tarea::agregarSubtarea(const char* desc) {
+    if (numSubtareas == capSubtareas) {
+        redimensionarSubtareas();
+    }
+    subDescripciones[numSubtareas] = desc;
+    subEstados[numSubtareas] = false;
+    numSubtareas++;
+}
+
+void Tarea::mostrarSubtareas() const {
+    if (numSubtareas > 0) {
+        cout << "   --- Subtareas ---" << endl;
+        for (int i = 0; i < numSubtareas; i++) {
+            cout << "   " << (i + 1) << ". ["
+                 << (subEstados[i] ? "X" : " ") << "] "
+                 << subDescripciones[i].c_str() << endl;
+        } } }
 
 //gets
 const char* Tarea::getTitulo() const {
@@ -96,7 +143,8 @@ void TareaHogar::cargarExtra(std::ifstream& ifs) {
 }
 
 void TareaHogar::mostrarDetalles() const {
-    cout << "[Hogar] Habitacion: " << habitacion.c_str() << endl;
+    cout << " [Hogar] Habitacion: " << habitacion.c_str() << endl;
+    mostrarSubtareas();
 }
 
 
@@ -126,6 +174,7 @@ void TareaUniversidad::cargarExtra(std::ifstream& ifs) {
 
 void TareaUniversidad::mostrarDetalles() const {
     cout << "  [Universidad] Materia: " << materia.c_str() << endl;
+    mostrarSubtareas();
 }
 
 //Ocio
@@ -152,6 +201,7 @@ void TareaOcio::cargarExtra(std::ifstream& ifs) {
 
 void TareaOcio::mostrarDetalles() const {
     cout << "  [Ocio] Lugar: " << lugar.c_str() << endl;
+    mostrarSubtareas();
 }
 
 

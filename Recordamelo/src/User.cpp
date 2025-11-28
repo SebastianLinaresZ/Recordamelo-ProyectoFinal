@@ -61,6 +61,17 @@ User::~User() {
     delete[] listaTareas;
 }
 
+void User::agregarSubtareaATarea(int indiceUsuario, const char* descSubtarea) {
+    int i = indiceUsuario - 1;
+    if (i >= 0 && i < numTareas) {
+        listaTareas[i]->agregarSubtarea(descSubtarea);
+        cout << "Subtarea agregada con exito." << endl;
+        guardarTareas();
+    } else {
+        cout << "Numero de tarea invalido." << endl;
+    }
+}
+
 User* User::cargarUsuariosSistema(int& total) {
     total = 3;
     User* lista = new User[total];

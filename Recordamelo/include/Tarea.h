@@ -14,11 +14,18 @@ protected:
     int prioridad;
     bool completada;
 
+    MyString* subDescripciones;
+    bool* subEstados;
+    int numSubtareas;
+    int capSubtareas;
+
+    void redimensionarSubtareas();
+
 public:
     Tarea();
     Tarea(const char* tit, const char* desc, time_t fecha, const char* tip, int prio);
 
-    virtual ~Tarea() {}
+    virtual ~Tarea();
 
     const char* getTitulo() const;
     const char* getDescripcion() const;
@@ -40,6 +47,9 @@ public:
     void setDescripcion(const MyString& d) { descripcion = d; }  // porque los atributos son protected
     void setFechaLimite(time_t f) { fechaLimite = f; }
     void setPrioridad(int p) { prioridad = p; }
+
+    void agregarSubtarea(const char* desc);
+    void mostrarSubtareas() const;
 
 };
 

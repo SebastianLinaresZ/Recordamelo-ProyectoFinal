@@ -31,6 +31,7 @@ public:
     void mostrarMisTareas() const;
     void marcarTareaCompletada(int indiceUsuario);
     void eliminarTarea(int indiceUsuario);
+    void agregarSubtareaATarea(int indiceUsuario, const char* descSubtarea);
 
     static User* cargarUsuariosSistema(int& total);
     //nuevo metodo
